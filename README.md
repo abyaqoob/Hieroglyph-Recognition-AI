@@ -1,20 +1,73 @@
-Egyptian Hieroglyph Recognition: IGSM-CVV Framework
-This repository implements a robust pipeline for the automated recognition of Egyptian hieroglyphs, as developed for the Artificial Intelligence (CS3002) course project. Our approach re-engineers the framework proposed by Fuentes-Ferrer et al. (2025), specifically optimized for accessibility on consumer-grade hardware.
+<h1 align="center">Egyptian Hieroglyph Recognition: IGSM-CVV Framework</h1>
 
-🚀 Key Features
-Hardware Optimized: Specifically tuned for 12GB VRAM environments (NVIDIA T4) using PyTorch Mixed Precision (AMP).
+<p align="center">
+  <i>Automated recognition of ancient Egyptian hieroglyphs optimized for accessibility and high-accuracy classification.</i>
+</p>
 
-IGSM Segmentation: A hybrid segmentation model using Local Adaptive Gaussian Thresholding and the Segment Anything Model (SAM) to resolve dense hieroglyphic registers.
+<hr>
 
-CVV Ensemble: A 5-slot Cross-Validation Voting system using a ConvNeXt-tiny backbone, achieving a peak accuracy of 95.8%.
+<h3>🚀 Key Features</h3>
+<ul>
+  <li><b>Hardware Optimized:</b> Specifically tuned for 12GB VRAM environments (NVIDIA T4) using <b>PyTorch Mixed Precision (AMP)</b>.</li>
+  <li><b>IGSM Segmentation:</b> A hybrid model combining Local Adaptive Gaussian Thresholding with the <b>Segment Anything Model (SAM)</b>.</li>
+  <li><b>CVV Ensemble:</b> A 5-slot Cross-Validation Voting system utilizing a <b>ConvNeXt-tiny</b> backbone.</li>
+  <li><b>Curated Dataset:</b> High-fidelity training on 155 Gardiner sign classes with strict stratification.</li>
+</ul>
 
-Curated Dataset: High-fidelity training on 155 Gardiner classes with a strict stratification threshold to eliminate data imbalance.
+<hr>
 
-📊 Performance at a Glance
-Our ensemble (CVV-SV) significantly outperforms individual models by resolving ambiguous morphological features through probability averaging.
+<h3>🏗️ Architecture Overview</h3>
+<p>The pipeline follows a three-stage process: Preprocessing (IGSM), Feature Extraction, and Ensemble Classification (CVV).</p>
 
-Metric	Value
-Global Accuracy	0.958
-Balanced Accuracy	0.899
-F1 Score	0.898
-Classes Supported	155
+<ol>
+  <li>
+    <b>Image Generation & Segmentation (IGSM):</b> 
+    Resolves low-contrast stone carvings by using Gaussian thresholding as a spatial prompt for SAM.
+  </li>
+  <li>
+    <b>Cross-Validation Voting (CVV):</b> 
+    Utilizes a <b>Soft Voting (SV)</b> system with five diverse model weights to reduce error rates for visually similar signs.
+  </li>
+</ol>
+
+<hr>
+
+<h3>📊 Performance Metrics</h3>
+<p>Our ensemble approach demonstrates superior stability across unbalanced classes compared to baseline CNN architectures.</p>
+
+<table width="100%">
+  <thead>
+    <tr style="background-color: #2d333b;">
+      <th align="left">Metric</th>
+      <th align="left">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>Global Accuracy</b></td>
+      <td>0.958</td>
+    </tr>
+    <tr>
+      <td><b>Balanced Accuracy</b></td>
+      <td>0.899</td>
+    </tr>
+    <tr>
+      <td><b>F1 Score</b></td>
+      <td>0.898</td>
+    </tr>
+    <tr>
+      <td><b>Gardiner Classes Supported</b></td>
+      <td>155</td>
+    </tr>
+    <tr>
+      <td><b>Inference Latency</b></td>
+      <td>~45ms / image</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr>
+
+<p align="center">
+  <i>Developed for the Artificial Intelligence (CS3002) course project.</i>
+</p>
